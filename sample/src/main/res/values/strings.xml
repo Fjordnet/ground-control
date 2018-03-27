@@ -1,0 +1,56 @@
+<!--
+  ~ Copyright 2017-2018 Fjord
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+    <string name="app_name">Ground Control</string>
+
+    <string name="menu_fragment">Fragment</string>
+
+    <!-- Permission Request Button Text -->
+    <string name="request_location_permission">Request Location</string>
+    <string name="request_read_contacts_permission">Request Read Contacts</string>
+    <string name="request_write_contacts_permission">Request Write Contacts</string>
+    <string name="request_microphone_permission">Request Microphone</string>
+    <string name="request_all_permissions">Request All Permissions</string>
+
+    <string name="action_update_location">Update Location</string>
+    <string name="action_export_logs">Export Logs</string>
+    <string name="action_export_state">Export State</string>
+
+    <!-- Permission Request Explanation Text -->
+    <string name="request_location_title">Location</string>
+    <string name="request_location_explanation">We need to know your current location.</string>
+    <string name="request_read_contacts_explanation">We need to read your contacts.</string>
+    <string name="request_write_contacts_explanation">We need to create contacts.</string>
+    <string name="request_microphone_explanation">We need to use your microphone to record audio.
+    </string>
+    <string name="request_camera_explanation">We need to use your camera.</string>
+    <string name="request_all_explanation">We need to use all of these following permissions.
+    </string>
+
+    <string name="launch_app_settings">Launch App Settings</string>
+
+    <!-- Results -->
+    <string name="permission_granted">%s is granted</string>
+    <string name="permission_denied">%s was denied</string>
+
+    <string name="permissions_granted">All requested permissions are granted</string>
+    <string name="permissions_denied">Some or all permissions were denied</string>
+
+    <string name="toast_exported_logs">Successfully exported logs</string>
+    <string name="toast_exported_state">Successfully exported state</string>
+    <string name="toast_cannot_export">Cannot write to external storage</string>
+</resources>
