@@ -139,7 +139,7 @@ Add the following entries to your buildscript. This may be in the top level buil
             mavenCentral()
         }
         dependencies {
-            classpath 'com.fjordnet.groundcontrol:gradle-plugin:1.0.0'
+            classpath 'com.fjordnet.groundcontrol:gradle-plugin:1.0.1'
         }
     }
 
@@ -206,7 +206,7 @@ This will produce the appropriate binaries and copy it into your local maven rep
 In your project, include your dependency as you normally would. For example:
 
     dependencies {
-        classpath 'com.fjordnet.groundcontrol:gradle-plugin:1.0.1-SNAPSHOT'
+        classpath 'com.fjordnet.groundcontrol:gradle-plugin:1.0.2-SNAPSHOT'
     }
 
 You will need to add the local maven repository for Gradle to be able to find it.

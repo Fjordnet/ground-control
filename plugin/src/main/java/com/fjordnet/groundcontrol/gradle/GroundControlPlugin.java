@@ -52,7 +52,7 @@ import static org.aspectj.bridge.IMessage.WARNING;
  */
 public class GroundControlPlugin implements Plugin<Project> {
 
-    private static final String GROUND_CONTROL_VERSION = "1.0.1-SNAPSHOT";
+    private static final String GROUND_CONTROL_VERSION = "1.0.1";
     private static final String ASPECTJ_RUNTIME_VERSION = "1.8.9";
 
     private static final String APT = "annotationProcessor";
