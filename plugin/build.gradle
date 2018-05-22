@@ -21,9 +21,8 @@ targetCompatibility = JavaVersion.VERSION_1_7
 sourceCompatibility = JavaVersion.VERSION_1_7
 
 dependencies {
-    compile gradleApi()
-    compile localGroovy()
-    compile ANDROID_GRADLE_PLUGIN
+    compileOnly gradleApi()
+    compileOnly ANDROID_GRADLE_PLUGIN
     compile ASPECTJ_TOOLS
     compile ASPECTJ_RUNTIME
 }
