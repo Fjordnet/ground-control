@@ -19,16 +19,15 @@ buildscript {
         mavenLocal()
         mavenCentral()
         jcenter()
+        google()
     }
     dependencies {
         classpath "com.fjordnet.groundcontrol:gradle-plugin:$VERSION_NAME"
-        classpath RETROLAMBDA
     }
 }
 
 apply plugin: 'com.android.application'
 apply plugin: 'com.fjordnet.groundcontrol'
-apply plugin: 'me.tatarka.retrolambda'
 
 android {
     compileOptions {
@@ -55,10 +54,6 @@ android {
     }
 }
 
-retrolambda {
-    jvmArgs '-noverify'
-}
-
 repositories {
     mavenLocal()
     maven { url 'https://oss.sonatype.org/content/groups/staging' }
@@ -67,8 +62,8 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "com.android.support:appcompat-v7:$SUPPORT_LIB_VERSION"
-    compile "com.android.support:design:$SUPPORT_LIB_VERSION"
-    compile CONSTRAINT_LAYOUT
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.android.support:appcompat-v7:$SUPPORT_LIB_VERSION"
+    implementation "com.android.support:design:$SUPPORT_LIB_VERSION"
+    implementation CONSTRAINT_LAYOUT
 }

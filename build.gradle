@@ -19,6 +19,7 @@ buildscript {
         mavenLocal()
         mavenCentral()
         jcenter()
+        google()
     }
     dependencies {
         classpath ANDROID_GRADLE_PLUGIN
@@ -33,5 +34,6 @@ allprojects {
         mavenLocal()
         mavenCentral()
         jcenter()
+        google()
     }
 }

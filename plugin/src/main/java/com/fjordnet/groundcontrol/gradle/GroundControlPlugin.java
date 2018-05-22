@@ -36,7 +36,7 @@ import org.gradle.api.artifacts.dsl.DependencyHandler;
 import org.gradle.api.artifacts.dsl.RepositoryHandler;
 import org.gradle.api.logging.Logger;
 import org.gradle.api.plugins.PluginContainer;
-import org.gradle.api.tasks.compile.AbstractCompile;
+import org.gradle.api.tasks.compile.JavaCompile;
 
 import java.io.File;
 import java.util.Iterator;
@@ -52,7 +52,7 @@ import static org.aspectj.bridge.IMessage.WARNING;
  */
 public class GroundControlPlugin implements Plugin<Project> {
 
-    private static final String GROUND_CONTROL_VERSION = "1.0.0";
+    private static final String GROUND_CONTROL_VERSION = "1.0.1-SNAPSHOT";
     private static final String ASPECTJ_RUNTIME_VERSION = "1.8.9";
 
     private static final String APT = "annotationProcessor";
@@ -137,11 +137,11 @@ public class GroundControlPlugin implements Plugin<Project> {
 
     private static class AjcAction implements Action<Task> {
 
-        private AbstractCompile compiler;
+        private JavaCompile compiler;
         private BaseExtension android;
         private Logger logger;
 
-        public AjcAction(AbstractCompile compiler, BaseExtension android, Logger logger) {
+        public AjcAction(JavaCompile compiler, BaseExtension android, Logger logger) {
             this.compiler = compiler;
             this.android = android;
             this.logger = logger;
@@ -157,7 +157,7 @@ public class GroundControlPlugin implements Plugin<Project> {
             String destinationDir = compiler.getDestinationDir().toString();
             String inpath = destinationDir;
             String classpath = compiler.getClasspath().getAsPath();
-            String bootClasspath = join(android.getBootClasspath());
+            String bootClasspath = compiler.getOptions().getBootstrapClasspath().getAsPath();
 
             String[] args = {
                     "-showWeaveInfo",
