@@ -37,8 +37,10 @@ import org.gradle.api.artifacts.dsl.RepositoryHandler;
 import org.gradle.api.logging.Logger;
 import org.gradle.api.plugins.PluginContainer;
 import org.gradle.api.tasks.compile.JavaCompile;
+import org.jetbrains.kotlin.gradle.internal.Kapt3GradleSubplugin;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Iterator;
 
 import static org.aspectj.bridge.IMessage.DEBUG;
@@ -52,9 +54,10 @@ import static org.aspectj.bridge.IMessage.WARNING;
  */
 public class GroundControlPlugin implements Plugin<Project> {
 
-    private static final String GROUND_CONTROL_VERSION = "1.0.1";
+    private static final String GROUND_CONTROL_VERSION = "1.0.2-SNAPSHOT";
     private static final String ASPECTJ_RUNTIME_VERSION = "1.8.9";
 
+    private static final String KAPT = "kapt";
     private static final String APT = "annotationProcessor";
     private static final String COMPILE = "compile";
     private static final String API = "api";
@@ -65,11 +68,14 @@ public class GroundControlPlugin implements Plugin<Project> {
 
         // Verify the project is an Android app or library.
         PluginContainer plugins = project.getPlugins();
-        boolean hasAppPlugin = null != plugins.withType(AppPlugin.class);
-        boolean hasLibPlugin = null != plugins.withType(LibraryPlugin.class);
+        boolean hasAppPlugin = !plugins.withType(AppPlugin.class).isEmpty();
+        boolean hasLibPlugin = !plugins.withType(LibraryPlugin.class).isEmpty();
         if (!hasAppPlugin && !hasLibPlugin) {
             throw new IllegalStateException("Android app or library plugin is required.");
         }
+
+        final String annotationProcessor =
+                !plugins.withType(Kapt3GradleSubplugin.class).isEmpty() ? KAPT : APT;
 
         // Find variants.
         DomainObjectSet<? extends BaseVariant> variants;
@@ -91,7 +97,8 @@ public class GroundControlPlugin implements Plugin<Project> {
         // Add project dependencies.
         String libDependencyFormat = "com.fjordnet.groundcontrol:%s:" + GROUND_CONTROL_VERSION;
         DependencyHandler dependencies = project.getDependencies();
-        dependencies.add(APT, String.format(libDependencyFormat, "annotation-processor"));
+        dependencies.add(annotationProcessor,
+                String.format(libDependencyFormat, "annotation-processor"));
 
         try {
             dependencies.add(dependencyType,
@@ -174,6 +181,8 @@ public class GroundControlPlugin implements Plugin<Project> {
             MessageHandler handler = new MessageHandler(true);
 
             new Main().run(args, handler);
+
+            logger.warn(String.format("ajc args: %s", join(Arrays.asList(args))));
 
             for (IMessage message : handler.getMessages(null, true)) {
                 IMessage.Kind kind = message.getKind();

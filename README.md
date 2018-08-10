@@ -139,7 +139,7 @@ Add the following entries to your buildscript. This may be in the top level buil
             mavenCentral()
         }
         dependencies {
-            classpath 'com.fjordnet.groundcontrol:gradle-plugin:1.0.1'
+            classpath 'com.fjordnet.groundcontrol:gradle-plugin:1.0.2'
         }
     }
 

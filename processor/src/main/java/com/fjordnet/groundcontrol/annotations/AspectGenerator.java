@@ -51,6 +51,7 @@ import static com.fjordnet.groundcontrol.annotations.ProcessorUtils.stringifyPar
 import static java.lang.String.format;
 import static javax.lang.model.element.ElementKind.METHOD;
 import static javax.lang.model.element.Modifier.ABSTRACT;
+import static javax.lang.model.element.Modifier.FINAL;
 import static javax.lang.model.element.Modifier.PRIVATE;
 import static javax.lang.model.element.Modifier.STATIC;
 import static javax.lang.model.type.TypeKind.ARRAY;
@@ -541,6 +542,7 @@ public class AspectGenerator {
 
         Set<Modifier> modifiers = new HashSet<>(callback.getModifiers());
         modifiers.add(ABSTRACT);
+        modifiers.remove(FINAL);
 
         writer.write(format("%1$s%2$s void %3$s(%4$s);\n\n",
                 tabs, // 1
